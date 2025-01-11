@@ -44,7 +44,7 @@ class PegawaiController extends Controller
             'jabatan_id' => 'required|exists:jabatan,id',
             'jam_lembur' => 'nullable|numeric|min:0',
             'jumlah_pelanggan' => 'nullable|integer|min:0',
-            'peningkatan_penjualan' => 'nullable|numeric|min:0|max:100',
+            'peningkatan_penjualan' => 'nullable|integer|min:0|max:100',
         ]);
 
         Pegawai::create($validated);

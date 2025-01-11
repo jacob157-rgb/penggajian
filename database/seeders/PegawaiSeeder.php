@@ -61,5 +61,17 @@ class PegawaiSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        Pegawai::create([
+            'nip' => 'MN005',
+            'nama' => 'Apip Basuri',
+            'tahun_masuk' => 2024,
+            'gaji_pokok' => 30000000,
+            'jabatan_id' => 2, // Sales
+            'jam_lembur' => null,
+            'jumlah_pelanggan' => null,
+            'peningkatan_penjualan' => 12,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

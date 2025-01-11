@@ -23,9 +23,9 @@ return new class extends Migration
             $table->string('nama');
             $table->year('tahun_masuk');
             $table->decimal('gaji_pokok', 15, 2);
-            $table->decimal('jam_lembur', 8, 2)->nullable();
+            $table->time('jam_lembur')->nullable();
             $table->integer('jumlah_pelanggan')->nullable();
-            $table->decimal('peningkatan_penjualan', 5, 2)->nullable();
+            $table->integer('peningkatan_penjualan')->nullable()->default(0);
             $table->timestamps();
 
             // Relasi ke tabel jabatan

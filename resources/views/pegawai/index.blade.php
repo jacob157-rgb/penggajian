@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container mt-4">
-        <h1>Daftar Pegawai</h1>
         @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
@@ -21,8 +20,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        <a class="btn btn-primary" href="{{ route('pegawai.create') }}">Tambah Pegawai</a>
-        <table class="mt-4 table">
+        <div class="d-flex justify-content-between">
+            <h3>Daftar Pegawai</h3>
+            <a class="btn btn-light px-5 shadow-sm stroke" href="{{ route('pegawai.create') }}">Tambah Pegawai</a>
+        </div>
+        <table class="mt-4 table table-hover border-none">
             <thead>
                 <tr>
                     <th>NIP</th>
@@ -36,15 +38,15 @@
             <tbody>
                 @foreach ($pegawais as $pegawai)
                     <tr>
-                        <td>{{ $pegawai->nip }}</td>
-                        <td>{{ $pegawai->nama }}</td>
-                        <td>{{ $pegawai->jabatan->nama }}</td>
-                        <td>Rp {{ number_format($pegawai->gaji_pokok, 0, ',', '.') }}</td>
-                        <td>Rp {{ number_format($pegawai->gaji_akhir, 0, ',', '.') }}</td>
-                        <td class="d-flex justify-center gap-2"><a class="btn btn-warning"
-                                href="{{ route('pegawai.edit', $pegawai) }}">Edit</a>
-                            <form action="{{ route('pegawai.destroy', $pegawai) }}" method="POST">@csrf @method('delete')
-                                <button class="btn btn-danger">Hapus</button>
+                        <td class="">{{ $pegawai->nip }}</td>
+                        <td class="w-25">{{ $pegawai->nama }}</td>
+                        <td class="w-25">{{ $pegawai->jabatan->nama }}</td>
+                        <td class="w-25">Rp {{ number_format($pegawai->gaji_pokok, 0, ',', '.') }}</td>
+                        <td class="w-25">Rp {{ number_format($pegawai->gaji_akhir, 0, ',', '.') }}</td>
+                        <td class="d-flex gap-2">
+                                <a class="btn btn-light px-5 shadow-sm stroke h-100" href="{{ route('pegawai.edit', $pegawai) }}">Edit</a>
+                                <form action="{{ route('pegawai.destroy', $pegawai) }}" method="POST">@csrf @method('delete')
+                                <button class="btn btn-dark">Hapus</button>
                             </form>
                         </td>
                     </tr>
