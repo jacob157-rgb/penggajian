@@ -51,7 +51,7 @@
                 <input type="number" name="peningkatan_penjualan" id="peningkatan_penjualan" class="form-control"
                     min="0" max="100" step="0.01" value="{{ $pegawai->peningkatan_penjualan }}">
             </div>
-            <button type="submit" class="btn btn-light px-5 shadow-sm stroke h-100">Update</button>
+            <button type="submit" class="btn btn-light px-5 shadow-sm stroke">Update</button>
         </form>
     </div>
 @endsection
