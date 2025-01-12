@@ -22,9 +22,14 @@
         @endif
         <div class="d-flex justify-content-between">
             <h3>Daftar Pegawai</h3>
-            <a class="btn btn-dark px-5 shadow-sm" href="{{ route('pegawai.create') }}">Tambah Pegawai</a>
+            <div class="d-flex gap-3">
+                <a class="btn btn-dark px-5 shadow-sm" href="{{ route('pegawai.create') }}">Tambah Pegawai</a>
+                <form action="{{ route('logout') }}" method="POST">@csrf
+                    <button class="btn btn-danger stroke px-5 shadow-sm">Keluar</button>
+                </form>
+            </div>
         </div>
-        <table class="mt-4 table table-hover border-none">
+        <table class="table-hover mt-4 table border-none">
             <thead>
                 <tr>
                     <th>NIP</th>
@@ -44,9 +49,9 @@
                         <td class="w-25">Rp {{ number_format($pegawai->gaji_pokok, 0, ',', '.') }}</td>
                         <td class="w-25">Rp {{ number_format($pegawai->gaji_akhir, 0, ',', '.') }}</td>
                         <td class="d-flex gap-2">
-                                <a class="btn btn-dark h-100" href="{{ route('pegawai.edit', $pegawai) }}">Edit</a>
-                                <form action="{{ route('pegawai.destroy', $pegawai) }}" method="POST">@csrf @method('delete')
-                                <button class="btn btn-light px-5 shadow-sm stroke">Hapus</button>
+                            <a class="btn btn-dark h-100" href="{{ route('pegawai.edit', $pegawai) }}">Edit</a>
+                            <form action="{{ route('pegawai.destroy', $pegawai) }}" method="POST">@csrf @method('delete')
+                                <button class="btn btn-light stroke px-5 shadow-sm">Hapus</button>
                             </form>
                         </td>
                     </tr>

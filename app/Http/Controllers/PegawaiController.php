@@ -102,37 +102,46 @@ class PegawaiController extends Controller
 
     private function hitungGajiAkhir(Pegawai $pegawai)
     {
-        $gaji_akhir = $pegawai->gaji_pokok;
+        $gaji_pokok = $pegawai->gaji_pokok ?? 0;
+        $jam_lembur = $pegawai->jam_lembur ?? 0;
+        $jumlah_pelanggan = $pegawai->jumlah_pelanggan ?? 0;
+        $tahun_masuk = $pegawai->tahun_masuk ?? date('Y');
+        $peningkatan_penjualan = $pegawai->peningkatan_penjualan ?? 0;
+
+        $gaji_akhir = $gaji_pokok;
+
+        if (!isset($pegawai->jabatan->nama)) {
+            throw new \Exception('Jabatan is not set or invalid.');
+        }
 
         switch ($pegawai->jabatan->nama) {
             case 'Satpam':
-                $gaji_akhir += $pegawai->jam_lembur * 20000;
+                $gaji_akhir += $jam_lembur * 20000;
                 break;
 
             case 'Sales':
-                $gaji_akhir += $pegawai->jumlah_pelanggan * 50000;
+                $gaji_akhir += $jumlah_pelanggan * 50000;
                 break;
 
             case 'Administrasi':
-                $lama_kerja = date('Y') - $pegawai->tahun_masuk;
+                $lama_kerja = date('Y') - $tahun_masuk;
                 $tunjangan = 0;
                 if ($lama_kerja >= 5) {
-                    $tunjangan = $pegawai->gaji_pokok * 0.03;
+                    $tunjangan = $gaji_pokok * 0.03;
                 } elseif ($lama_kerja >= 3) {
-                    $tunjangan = $pegawai->gaji_pokok * 0.01;
+                    $tunjangan = $gaji_pokok * 0.01;
                 }
                 $gaji_akhir += $tunjangan;
                 break;
 
             case 'Manajer':
-                if ($pegawai->peningkatan_penjualan > 10) {
-                    $bonus = $pegawai->gaji_pokok * 0.10;
-                } elseif ($pegawai->peningkatan_penjualan >= 6) {
-                    $bonus = $pegawai->gaji_pokok * 0.05;
-                } elseif ($pegawai->peningkatan_penjualan >= 1) {
-                    $bonus = $pegawai->gaji_pokok * 0.02;
-                } else {
-                    $bonus = 0;
+                $bonus = 0;
+                if ($peningkatan_penjualan > 10) {
+                    $bonus = $gaji_pokok * 0.10;
+                } elseif ($peningkatan_penjualan >= 6) {
+                    $bonus = $gaji_pokok * 0.05;
+                } elseif ($peningkatan_penjualan >= 1) {
+                    $bonus = $gaji_pokok * 0.02;
                 }
                 $gaji_akhir += $bonus;
                 break;

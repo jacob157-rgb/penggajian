@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('nama');
             $table->year('tahun_masuk');
             $table->decimal('gaji_pokok', 15, 2);
-            $table->time('jam_lembur')->nullable();
+            $table->integer('jam_lembur')->nullable();
             $table->integer('jumlah_pelanggan')->nullable();
             $table->integer('peningkatan_penjualan')->nullable()->default(0);
             $table->timestamps();
@@ -34,7 +34,6 @@ return new class extends Migration
                 ->on('jabatan')
                 ->onDelete('cascade');
         });
-
     }
 
     /**
