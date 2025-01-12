@@ -44,9 +44,9 @@
                         <td class="w-25">Rp {{ number_format($pegawai->gaji_pokok, 0, ',', '.') }}</td>
                         <td class="w-25">Rp {{ number_format($pegawai->gaji_akhir, 0, ',', '.') }}</td>
                         <td class="d-flex gap-2">
-                                <a class="btn btn-dark" href="{{ route('pegawai.edit', $pegawai) }}">Edit</a>
+                                <a class="btn btn-dark h-100" href="{{ route('pegawai.edit', $pegawai) }}">Edit</a>
                                 <form action="{{ route('pegawai.destroy', $pegawai) }}" method="POST">@csrf @method('delete')
-                                <button class="btn btn-light px-5 shadow-sm stroke h-100">Hapus</button>
+                                <button class="btn btn-light px-5 shadow-sm stroke">Hapus</button>
                             </form>
                         </td>
                     </tr>
