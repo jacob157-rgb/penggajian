@@ -45,8 +45,8 @@
                     min="0" max="100" step="0.01">
             </div>
             <div class="d-flex gap-3 justify-content-end">
-                <a class="btn btn-dark px-5 shadow-sm" href="/pegawai">Kembali</a>
-                <button type="submit" class="btn btn-light px-5 shadow-sm stroke">Simpan</button>
+                <a class="btn btn-light px-5 shadow-sm stroke" href="/pegawai">Kembali</a>
+                <button type="submit" class="btn btn-dark px-5 shadow-sm">Simpan</button>
             </div>
         </form>
     </div>

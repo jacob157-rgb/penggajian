@@ -22,7 +22,7 @@
         @endif
         <div class="d-flex justify-content-between">
             <h3>Daftar Pegawai</h3>
-            <a class="btn btn-light px-5 shadow-sm stroke" href="{{ route('pegawai.create') }}">Tambah Pegawai</a>
+            <a class="btn btn-dark px-5 shadow-sm" href="{{ route('pegawai.create') }}">Tambah Pegawai</a>
         </div>
         <table class="mt-4 table table-hover border-none">
             <thead>
@@ -44,9 +44,9 @@
                         <td class="w-25">Rp {{ number_format($pegawai->gaji_pokok, 0, ',', '.') }}</td>
                         <td class="w-25">Rp {{ number_format($pegawai->gaji_akhir, 0, ',', '.') }}</td>
                         <td class="d-flex gap-2">
-                                <a class="btn btn-light px-5 shadow-sm stroke h-100" href="{{ route('pegawai.edit', $pegawai) }}">Edit</a>
+                                <a class="btn btn-dark" href="{{ route('pegawai.edit', $pegawai) }}">Edit</a>
                                 <form action="{{ route('pegawai.destroy', $pegawai) }}" method="POST">@csrf @method('delete')
-                                <button class="btn btn-dark">Hapus</button>
+                                <button class="btn btn-light px-5 shadow-sm stroke h-100">Hapus</button>
                             </form>
                         </td>
                     </tr>
