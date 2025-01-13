@@ -116,10 +116,16 @@ class PegawaiController extends Controller
 
         switch ($pegawai->jabatan->nama) {
             case 'Satpam':
+                if ($jam_lembur < 0) {
+                    throw new \Exception('Jam lembur tidak valid.');
+                }
                 $gaji_akhir += $jam_lembur * 20000;
                 break;
 
             case 'Sales':
+                if ($pegawai->jabatan->nama === 'Sales' && $jumlah_pelanggan <= 0) {
+                    throw new \Exception('Jumlah pelanggan tidak valid.');
+                }
                 $gaji_akhir += $jumlah_pelanggan * 50000;
                 break;
 
@@ -148,5 +154,10 @@ class PegawaiController extends Controller
         }
 
         return $gaji_akhir;
+    }
+
+    public function testHitungGajiAkhir(Pegawai $pegawai)
+    {
+        return $this->hitungGajiAkhir($pegawai); // Memanggil private method
     }
 }
