@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PegawaiBase extends Model
 {
+    use HasFactory;
+
     protected $table = 'pegawai';
     protected $guarded = ['id'];
 
@@ -38,9 +41,7 @@ class Pegawai extends PegawaiBase
                 break;
 
             case 'Manajer':
-                $bonus = $this->peningkatan_penjualan > 10 ? $this->gaji_pokok * 0.10 :
-                    ($this->peningkatan_penjualan >= 6 ? $this->gaji_pokok * 0.05 :
-                    ($this->peningkatan_penjualan >= 1 ? $this->gaji_pokok * 0.02 : 0));
+                $bonus = $this->peningkatan_penjualan > 10 ? $this->gaji_pokok * 0.10 : ($this->peningkatan_penjualan >= 6 ? $this->gaji_pokok * 0.05 : ($this->peningkatan_penjualan >= 1 ? $this->gaji_pokok * 0.02 : 0));
                 $gaji_akhir += $bonus;
                 break;
         }

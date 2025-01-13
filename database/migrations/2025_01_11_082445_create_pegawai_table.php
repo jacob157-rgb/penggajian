@@ -19,6 +19,7 @@ return new class extends Migration
         Schema::create('pegawai', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('jabatan_id');
+            $table->index('jabatan_id');
             $table->string('nip', 8)->unique();
             $table->string('nama');
             $table->year('tahun_masuk');
